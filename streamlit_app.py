@@ -7,7 +7,8 @@ from streamlit_chat import message
 
 
 # We can simply retrieve our API by calling st.secrets.api_credentials.key
-openai_api_key = st.secrets.OPENAI.api_key
+openai_api_key = st.secrets.OPENAI.key
+openai.api_key = openai_api_key
 
 
 if 'prompts' not in st.session_state:
