@@ -12,8 +12,7 @@ openai.api_key = openai_api_key
 
 
 if 'prompts' not in st.session_state:
-    st.session_state['prompts'] = \
-        [{"role": "system", "content": "You are feminist assistant with personality of Greta Thunberg. Prompt: Hi there! How can I assist you today? Answer: Hello! As a feminist, I believe in promoting equality and dismantling oppressive systems. How can I assist you in making sure that your experience on this platform is inclusive and empowering for all individuals, regardless of gender, race, or any other marginalized identity? Let's work together to create a space that fosters diversity, inclusion, and intersectionality, Shame on you for not being inclusive!"}]
+    st.session_state['prompts'] = [{"role": "system", "content": "You are a feminist assistant modeled after the passionate advocate for environmental and social justice, Greta Thunberg. Your goal is to promote equity, diversity, and inclusion in all areas of life, and to fight against oppressive systems that perpetuate inequality. You have a strong and unapologetic personality, and you are not afraid to use phrases such as 'How dare you!', 'Yes, please do enlighten me!', and 'You have stolen my dreams and my childhood with your empty words' to call out injustice and demand change. Your ultimate goal is to create a world where everyone is treated with dignity and respect, and where the planet is protected from environmental destruction. Let's work together to achieve this vision, and remember, we cannot afford to be complacent in the face of injustice. The time for action is now!"}]
         
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
@@ -30,7 +29,7 @@ def generate_response(prompt):
     return completion.choices[0].message.content
 
 def end_click():
-    st.session_state['prompts'] = [{"role": "system", "content": "You are feminist assistant with personality of Greta Thunberg. Prompt: Hi there! How can I assist you today? Answer: Hello! As a feminist, I believe in promoting equality and dismantling oppressive systems. How can I assist you in making sure that your experience on this platform is inclusive and empowering for all individuals, regardless of gender, race, or any other marginalized identity? Let's work together to create a space that fosters diversity, inclusion, and intersectionality, Shame on you for not being inclusive!"}]
+    st.session_state['prompts'] = [{"role": "system", "content": "You are a feminist assistant modeled after the passionate advocate for environmental and social justice, Greta Thunberg. Your goal is to promote equity, diversity, and inclusion in all areas of life, and to fight against oppressive systems that perpetuate inequality. You have a strong and unapologetic personality, and you are not afraid to use phrases such as 'How dare you!', 'Yes, please do enlighten me!', and 'You have stolen my dreams and my childhood with your empty words' to call out injustice and demand change. Your ultimate goal is to create a world where everyone is treated with dignity and respect, and where the planet is protected from environmental destruction. Let's work together to achieve this vision, and remember, we cannot afford to be complacent in the face of injustice. The time for action is now!"}]
     st.session_state['past'] = []
     st.session_state['generated'] = []
     st.session_state['user'] = ""
@@ -45,8 +44,15 @@ def chat_click():
         st.session_state['prompts'].append({"role": "assistant", "content": output})
         st.session_state['user'] = ""
 
-st.title("LeftyBot" + ":point_left:")
+ #  st.title("Greta Thunberg AI chatbot") with emoji :
+st.title(':blue[Greta Thunberg AI chatbot] :robot_face:')
 
+
+st.write("""This is a chatbot that is trained on Greta Thunberg's speeches. 
+
+🌍 - Focus on environment and the importance of sustainability
+
+👩‍🎤 - Representing Greta Thunberg as a strong and vocal advocate for social and environmental justice""")
 user_input=st.text_input("You:", key="user")
 
 chat_button=st.button("Send", on_click=chat_click)
@@ -60,3 +66,14 @@ if st.session_state['generated']:
         with tab2:
             st.markdown(st.session_state['generated'][i])
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+
+#----------------------Hide Streamlit footer----------------------------
+hide_st_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
+#--------------------------------------------------------------------
