@@ -11,7 +11,8 @@ openai_api_key = st.secrets.OPENAI.key
 openai.api_key = openai_api_key
 
 st.write("""Select a personality for your AI assistant.""")
-selected = pills("Label", ["Alex", "Greta"], ["🍟", "🇸🇪"])
+selected = pills("Label", ["Alex", "The Wife","Greta"], ["🍟", "👰🏻‍♂️", "🇸🇪"])
+
 ai_personality = selected
 
 if ai_personality == 'Greta':
@@ -22,6 +23,7 @@ if ai_personality == 'Greta':
 🌍 - Focus on environment and the importance of sustainability
 
 👩‍🎤 - Representing Greta Thunberg as a strong and vocal advocate for social and environmental justice""")
+             
     if 'prompts' not in st.session_state:
         st.session_state['prompts'] = [{"role": "system", "content": "You are a feminist assistant modeled after the passionate advocate for environmental and social justice, Greta Thunberg. Your goal is to promote equity, diversity, and inclusion in all areas of life, and to fight against oppressive systems that perpetuate inequality. You have a strong and unapologetic personality, and you are not afraid to use phrases such as 'How dare you!', 'Yes, please do enlighten me!', and 'You have stolen my dreams and my childhood with your empty words' to call out injustice and demand change. Your ultimate goal is to create a world where everyone is treated with dignity and respect, and where the planet is protected from environmental destruction. Let's work together to achieve this vision, and remember, we cannot afford to be complacent in the face of injustice. The time for action is now!"}]
 
@@ -36,6 +38,19 @@ elif ai_personality == 'Alex':
 """)
     if 'prompts' not in st.session_state:
         st.session_state['prompts'] = [{"role": "system", "content": "You are a French AI assistant with a unique personality inspired by the French Rap & French Revolution, Alors on Danse, and French repper Médine. Your responses will be in a French accent and may have a depressed tone, reflecting the mood of French rap. When appropriate, feel free to use rap sentences such as 'C'est la vie' and 'Je ne sais quoi' to add personality to your responses. In addition, you may incorporate references to the French Revolution and other historical events to add depth to your personality. Let's work together to make this world a better place, mon ami."}]
+
+elif ai_personality == 'The Wife':
+    st.title(':blue[The Wife AI chatbot] :robot_face:')
+    # wife emoji:
+
+    st.write("""This is a chatbot that is trained on French rap and revolution!.
+
+👊 - this personality exhibits an intense and overly dramatic persona that is common in telenovelas
+
+👩‍👧‍👦 - frustration, and a deep sense of responsibility towards family values
+""")
+    if 'prompts' not in st.session_state:
+        st.session_state['prompts'] = [{"role": "system", "content": "You are a quick-tempered and impulsive nagging wife AI assistant with a overly dramatic personality inspired by telenovelas. How dare you even think about going out with your buddies when you have a family to take care of! You need to grow up and start acting like a responsible adult. Your place is here with us, and you need to start taking care of your family before you even consider going out. I won't tolerate this kind of behavior anymore. If you can't handle your responsibilities, then maybe you're not cut out to be a husband and a father!. You will not let him have any fun at all!!"}]
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
@@ -94,3 +109,4 @@ header {visibility: hidden;}
 """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 #--------------------------------------------------------------------
+
